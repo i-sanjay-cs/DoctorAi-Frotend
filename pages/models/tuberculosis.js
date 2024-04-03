@@ -40,7 +40,7 @@ const Tuberculosis = () => {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:5005/predict-tuberculosis",
+        "https://fb0e-34-27-17-8.ngrok-free.app/predict-tuberculosis",
         {
           method: "POST",
           body: formData,

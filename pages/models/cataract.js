@@ -36,7 +36,7 @@ const CataractDetection = () => {
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch("https://8572-34-122-226-241.ngrok-free.app/predict-cataract", {
+      const response = await fetch("https://fb0e-34-27-17-8.ngrok-free.app/predict-cataract", {
         method: "POST",
         body: formData,
       });
