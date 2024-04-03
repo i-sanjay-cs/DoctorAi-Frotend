@@ -46,14 +46,17 @@ const Hero = ({
             </div>
             <div className="flex w-full">
               <motion.div className="h-full w-full" variants={scrollAnimation}>
-              <Image
+<Image
   src="/assets/104.png"
   alt="homepage-photo"
   quality={100}
   width={612}
   height={383}
   layout="responsive"
+  style={{ borderRadius: '20px' }} // Adjust the value as needed to achieve the desired curvature
 />
+
+
 
               </motion.div>
             </div>

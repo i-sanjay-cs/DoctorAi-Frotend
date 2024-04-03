@@ -20,14 +20,15 @@ const Feature = () => {
       <div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8 py-8 my-12">
         <ScrollAnimationWrapper className="flex w-full justify-end">
           <motion.div className="h-full w-full p-4" variants={scrollAnimation}>
-            <Image
-              src="https://i.postimg.cc/c6qM7Ckw/banner2.gif"
-              alt="VPN Illustration"
-              layout="responsive"
-              quality={100}
-              height={414}
-              width={508}
-            />
+          <Image
+  src="/assets/105.png"
+  alt="homepage-photo"
+  quality={100}
+  width={612}
+  height={383}
+  layout="responsive"
+  style={{ borderRadius: '20px' }} // Adjust the value as needed to achieve the desired curvature
+/>
           </motion.div>
         </ScrollAnimationWrapper>
         <ScrollAnimationWrapper>
