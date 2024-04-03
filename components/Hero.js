@@ -46,14 +46,15 @@ const Hero = ({
             </div>
             <div className="flex w-full">
               <motion.div className="h-full w-full" variants={scrollAnimation}>
-                <Image
-                  src="https://postimg.cc/gLYBRqd8"
-                  alt="homepage-photo"
-                  quality={100}
-                  width={612}
-                  height={383}
-                  layout="responsive"
-                />
+              <Image
+  src="/assets/mainpage.gif"
+  alt="homepage-photo"
+  quality={100}
+  width={612}
+  height={383}
+  layout="responsive"
+/>
+
               </motion.div>
             </div>
           </motion.div>
