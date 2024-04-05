@@ -1,4 +1,3 @@
-// pages/contact.js
 import React from "react";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
@@ -9,7 +8,7 @@ const ContactPage = () => {
       <Header />
       <div className="bg-gray-100 p-8 flex flex-col items-center" style={{ minHeight: "100vh" }}>
         <h1 className="text-4xl font-bold mb-8 text-green-800">Contact Page</h1>
-        <div className="contact-container" style={{ maxWidth: "600px", margin: "0 auto" }}>
+        <div className="contact-container" style={{ maxWidth: "90%", margin: "0 auto" }}>
           <h2 className="text-2xl font-bold mb-4">Contact Our Team Members</h2>
           <div className="team-member bg-white p-4 rounded-lg shadow-md" style={{ marginBottom: "20px" }}>
             <h3 style={{ fontSize: "20px", marginBottom: "10px" }}>Nirmal Avhad</h3>
@@ -21,7 +20,7 @@ const ContactPage = () => {
           </div>
           <div className="team-member bg-white p-4 rounded-lg shadow-md" style={{ marginBottom: "20px" }}>
             <h3 style={{ fontSize: "20px", marginBottom: "10px" }}>Arshdeep Singh Mathadu</h3>
-            <p style={{ fontSize: "18px" }}>Email: arshdeepsinghmathadu707@gmail.com</p>
+            <p style={{ fontSize: "14px" }}>Email: arshdeepsinghmathadu707@gmail.com</p> {/* Reduced font size */}
           </div>
           <div className="team-member bg-white p-4 rounded-lg shadow-md" style={{ marginBottom: "40px" }}>
             <h3 style={{ fontSize: "20px", marginBottom: "10px" }}>Sanjay Prajapati</h3>

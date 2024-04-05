@@ -41,7 +41,7 @@ const MediMate = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
       <Header />
-      <div className="flex flex-col justify-between p-8" style={{ paddingTop:"10rem"}}>
+      <div className="flex flex-col justify-between p-8" style={{ paddingTop:"2rem"}}>
         <h1 className="text-2xl text-dark mb-4 text-center font-bold">Chat with MediMate</h1>
         <div style={{ marginTop: "2px" }}>
           <div
@@ -70,7 +70,7 @@ const MediMate = () => {
           <form
             id="chat-form"
             onSubmit={handleSubmit}
-            className="mt-4 flex items-center"
+            className="mt-4 flex flex-col"
           >
             <input
               type="text"
@@ -81,13 +81,15 @@ const MediMate = () => {
               autoComplete="off"
               autoFocus
             />
-            <button
-            style={{ background: "#2FAB73" ,width:"5rem",height:"3rem"}}
-              type="submit"
-              className="px-4 py-2text-white rounded-full"
-            >
-              Send
-            </button>
+            <div className="flex items-center justify-end">
+              <button
+                style={{ background: "#2FAB73", height: "3rem", width: "10rem" }}
+                type="submit"
+                className="px-4 py-2 text-white rounded-full mt-2"
+              >
+                Send
+              </button>
+            </div>
           </form>
         </div>
       </div>

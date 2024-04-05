@@ -6,7 +6,7 @@ import Footer from "../components/Layout/Footer";
 import Link from "next/link";
 
 const ModelCard = ({ modelName, description, link }) => (
-  <div className="bg-white p-6 mb-4 rounded-md shadow-md hover:bg-red-500" style={{ width: "350px", height: "370px", backgroundColor: "rgba(245, 245, 245, 0.9)", position: "relative" }}>
+  <div className="bg-white p-6 mb-4 rounded-md shadow-md hover:bg-red-500" style={{ width: "330px", height: "390px", backgroundColor: "rgba(245, 245, 245, 0.9)", position: "relative" }}>
     <h2 className="text-xl font-semibold mb-4 text-green-800">{modelName}</h2>
     <p className="text-gray-600 mb-4 flex-grow">{description}</p>
     {link ? (

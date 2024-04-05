@@ -1,4 +1,3 @@
-// pages/data.js
 import React from "react";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
@@ -42,7 +41,7 @@ const DataPage = () => {
   return (
     <>
       <Header />
-      <div className="bg-gray-100 p-8 flex flex-col items-center" style={{ minHeight: "100vh" }}>
+      <div className="bg-gray-100 flex flex-col items-center" style={{ minHeight: "100vh" }}>
         <h1 className="text-4xl font-bold mb-8 text-green-800">Data Page</h1>
         {/* Render model cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
