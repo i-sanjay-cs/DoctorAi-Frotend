@@ -53,19 +53,17 @@ const PneumoniaDetection = () => {
       const generateResponse = await cohere.generate({
         prompt: `${result.predicted_class_name} what are the next steps typically taken?`,
       });
-      
-      
 
-// Extract the generated text from the CoHere response
-let { text } = generateResponse.generations[0];
+      // Extract the generated text from the CoHere response
+      let { text } = generateResponse.generations[0];
 
-// Adjust text for normal condition
-if (result.predicted_class_name.toLowerCase() === 'normal') {
-  text = "That's great! You are fine. If you need more information, you can consult a MediMate.";
-}
+      // Adjust text for normal condition
+      if (result.predicted_class_name.toLowerCase() === 'normal') {
+        text = "That's great! You are fine. If you need more information, you can consult a MediMate.";
+      }
 
-// Set the generated text or a message if no text is generated
-setGeneratedText(text || "No advice generated for this condition.");
+      // Set the generated text or a message if no text is generated
+      setGeneratedText(text || "No advice generated for this condition.");
 
     } catch (error) {
       console.error("Error detecting pneumonia:", error);
@@ -88,46 +86,48 @@ setGeneratedText(text || "No advice generated for this condition.");
       <div className="bg-gray-100 p-8 pt-24 flex flex-col items-center" style={{ minHeight: "100vh" }}>
         <h1 className="text-4xl font-bold mb-4 text-green-800">Pneumonia Detection</h1>
         
-        {/* Input Section */}
-        <div style={{ backgroundColor: "#fff" }} className="p-8 mb-8 rounded-md shadow-md flex items-center">
-          {/* File input and upload button */}
-          <div className="mr-8">
-            <h2 className="text-2xl font-semibold mb-4">Upload Image</h2>
-            <label htmlFor="fileInput" className="bg-green-500 text-white px-4 py-2 rounded-md cursor-pointer">
-              Choose File
-            </label>
+        {/* Upload Image Section */}
+        <div style={{ backgroundColor: "#fff", width: "100%", maxWidth: "600px" }} className="p-8 mb-8 rounded-md shadow-md flex flex-col md:flex-row items-center">
+          {/* File input */}
+          <div className="mr-4 md:mr-8 mb-4 md:mb-0">
+            <h2 className="text-2xl font-semibold mb-2 md:mb-4">Upload Image</h2>
             <input
               type="file"
               id="fileInput"
               className="hidden"
               onChange={handleFileChange}
             />
-            <button className="bg-gray-500 text-white px-4 py-2 rounded-md ml-4" onClick={handleUpload}>
-              Detect Pneumonia
-            </button>
+            <label htmlFor="fileInput" className="block bg-green-500 text-white px-4 py-2 rounded-md cursor-pointer mb-2 md:mb-0">
+              Choose File
+            </label>
           </div>
           
-          {/* Display uploaded image */}
-          {uploadedImageUrl && (
-            <div>
-              <img src={uploadedImageUrl} alt="Uploaded" className="max-h-64 max-w-64" />
-            </div>
-          )}
+          {/* Upload button */}
+          <button className="bg-gray-500 text-white px-4 py-2 rounded-md" style={{ paddingTop: '10px', marginTop: '50px' }} onClick={handleUpload}>
+            Detect Pneumonia
+          </button>
         </div>
         
+        {/* Display uploaded image */}
+        {uploadedImageUrl && (
+          <div className="mb-8">
+            <img src={uploadedImageUrl} alt="Uploaded" className="max-h-64 max-w-full" />
+          </div>
+        )}
+        
         {/* Output Section */}
-        <div style={{ backgroundColor: "#fff", width: "1000px", height: "200px" }} className="p-8 rounded-md shadow-md">
+        <div style={{ backgroundColor: "#fff", width: "100%", maxWidth: "600px", height: "200px" }} className="p-8 rounded-md shadow-md mb-4">
           <h2 className="text-2xl font-semibold mb-4">Results</h2>
           <p>
             <strong>Condition:</strong> <span style={{ color: "black" }}>{outputCondition}</span> <br />
-           
+            
           </p>
         </div>
 
         {/* Generated Text Section */}
-        <div style={{ backgroundColor: "#fff", width: "1000px", minHeight: "200px", marginTop: "20px", overflow: "auto", wordWrap: "break-word", fontSize: "14px", wordWrap: "break-word" }} className="p-8 rounded-md shadow-md">
+        <div style={{ backgroundColor: "#fff", width: "100%", maxWidth: "600px", maxHeight: "200px", overflowY: "auto" }} className="p-8 rounded-md shadow-md">
           <h2 className="text-2xl font-semibold mb-4">Response from MediMate</h2>
-          <pre>{generatedText}</pre>
+          <div style={{ fontSize: "14px" }}>{generatedText}</div>
         </div>
       </div>
       
