@@ -36,7 +36,7 @@ const BrainTumour = () => {
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch("https://fb0e-34-27-17-8.ngrok-free.app/predict-brain-tumour", {
+      const response = await fetch("https://6943-34-133-233-220.ngrok-free.app/predict-brain-tumour", {
         method: "POST",
         body: formData,
       });

@@ -36,7 +36,7 @@ const PneumoniaDetection = () => {
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch("https://fb0e-34-27-17-8.ngrok-free.app/predict-pneumonia", {
+      const response = await fetch("https://6943-34-133-233-220.ngrok-free.app/predict-pneumonia", {
         method: "POST",
         body: formData,
       });
