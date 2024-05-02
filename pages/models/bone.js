@@ -37,7 +37,7 @@ const BoneFracture = () => {
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch("https://6943-34-133-233-220.ngrok-free.app/predict-bone", {
+      const response = await fetch("https://2ad9-34-133-50-102.ngrok-free.app/predict-bone", {
         method: "POST",
         body: formData,
       });
