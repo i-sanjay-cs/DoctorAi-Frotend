@@ -14,6 +14,7 @@ const BrainTumour = () => {
   const [outputStyle, setOutputStyle] = useState({});
   const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
   const [generatedText, setGeneratedText] = useState("Wait for generating the response"); // Initial state
+  const [errorMessage, setErrorMessage] = useState(""); // State variable for error messages
 
   // Function to handle file change
   const handleFileChange = (event) => {
@@ -28,7 +29,7 @@ const BrainTumour = () => {
   // Function to handle file upload and text generation
   const handleUpload = async () => {
     if (!selectedFile) {
-      alert("Please choose a file.");
+      setErrorMessage("Please choose a file.");
       return;
     }
 
@@ -36,7 +37,7 @@ const BrainTumour = () => {
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch("https://2ad9-34-133-50-102.ngrok-free.app/predict-brain-tumor", {
+      const response = await fetch("https://32d2-34-122-19-16.ngrok-free.app/predict-brain-tumor", {
         method: "POST",
         body: formData,
       });
@@ -46,16 +47,23 @@ const BrainTumour = () => {
       }
 
       const result = await response.json();
-      setOutputResult(result.predicted_label);
+
+      if (result.error) {
+        setErrorMessage(result.error); // Handle error response
+        return;
+      }
+
+      setErrorMessage(""); // Clear any previous error message
+      setOutputResult(result.prediction_result);
 
       // Apply styles based on the result
       setOutputStyle({
-        color: result.predicted_label === "Tumour Detected" ? "Red" : "Green",
+        color: result.prediction_result === "Brain tumor detected" ? "Red" : "Green",
       });
 
       // Generate text using CoHere based on the result
       const generateResponse = await cohere.generate({
-        prompt: `Start with : Hello, I am MediMate. and ${result.predicted_label} what are the next steps typically taken?`,
+        prompt: `Start with: Hello, I am MediMate. ${result.prediction_result} What are the next steps typically taken?`,
       });
 
       // Extract the generated text from the CoHere response
@@ -65,10 +73,9 @@ const BrainTumour = () => {
       setGeneratedText(text || "No advice generated for this condition.");
     } catch (error) {
       console.error("Error detecting brain tumour:", error);
-      setOutputResult("Error detecting brain tumour. Please try again.");
-      setOutputStyle({
-        color: "black",
-      });
+      setOutputResult("Error detecting brain tumor. Please try again.");
+      setOutputStyle({ color: "black" });
+      setErrorMessage("Error detecting brain tumor. Please try again."); // Set error message
     }
   };
 
@@ -107,7 +114,7 @@ const BrainTumour = () => {
             Detect Tumour
           </button>
         </div>
-        
+
         {/* Display uploaded image */}
         {uploadedImageUrl && (
           <div className="mb-8">
@@ -122,6 +129,14 @@ const BrainTumour = () => {
             <strong>Condition:</strong> <span style={outputStyle}>{outputResult}</span>
           </p>
         </div>
+
+        {/* Error Message Section */}
+        {errorMessage && (
+          <div style={{ backgroundColor: "#fff", width: "100%", maxWidth: "600px", height: "200px" }} className="p-8 mb-8 rounded-md shadow-md">
+            <h2 className="text-2xl font-semibold mb-4" style={{ color: "red" }}>Error</h2>
+            <p>{errorMessage}</p>
+          </div>
+        )}
 
         {/* Generated Text Section */}
         <div style={{ backgroundColor: "#fff", width: "100%", maxWidth: "600px", maxHeight: "200px", overflowY: "auto" }} className="p-8 mb-8 rounded-md shadow-md">

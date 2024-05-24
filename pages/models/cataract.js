@@ -11,9 +11,10 @@ const CataractDetection = () => {
   // State variables
   const [selectedFile, setSelectedFile] = useState(null);
   const [outputCondition, setOutputCondition] = useState("");
-  const [outputAccuracy, setOutputAccuracy] = useState("");
+  const [outputStyle, setOutputStyle] = useState({});
   const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
-  const [generatedText, setGeneratedText] = useState("Wait for generating the response"); // Initial state
+  const [generatedText, setGeneratedText] = useState("Wait for generating the response");
+  const [errorMessage, setErrorMessage] = useState("");
 
   // Function to handle file change
   const handleFileChange = (event) => {
@@ -28,7 +29,7 @@ const CataractDetection = () => {
   // Function to handle file upload and text generation
   const handleUpload = async () => {
     if (!selectedFile) {
-      alert("Please choose a file.");
+      setErrorMessage("Please choose a file.");
       return;
     }
 
@@ -36,7 +37,7 @@ const CataractDetection = () => {
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch("https://2ad9-34-133-50-102.ngrok-free.app/predict-cataract", {
+      const response = await fetch("https://32d2-34-122-19-16.ngrok-free.app/predict-cataract", {
         method: "POST",
         body: formData,
       });
@@ -46,17 +47,27 @@ const CataractDetection = () => {
       }
 
       const result = await response.json();
+
+      if (result.error) {
+        setErrorMessage(result.error); // Handle error response
+        return;
+      }
+
+      setErrorMessage(""); // Clear any previous error message
       setOutputCondition(result.predicted_class);
-      setOutputAccuracy(result.confidence.toFixed(2));
+
+      // Apply styles based on the result
+      setOutputStyle({
+        color: result.predicted_class === "Cataract Detected" ? "Red" : "Green",
+      });
 
       // Generate text using CoHere based on the result
       const generateResponse = await cohere.generate({
-        prompt: `${result.predicted_class} what are the next steps typically taken?
-    `,
+        prompt: `Start with: Hello, I am MediMate. ${result.predicted_class} What are the next steps typically taken?`,
       });
 
       // Extract the generated text from the CoHere response
-      let { text } = generateResponse.generations[0];
+      const { text } = generateResponse.generations[0];
 
       // Adjust text for normal condition
       if (result.predicted_class.toLowerCase() === 'normal') {
@@ -65,11 +76,11 @@ const CataractDetection = () => {
 
       // Set the generated text or a message if no text is generated
       setGeneratedText(text || "No advice generated for this condition.");
-
     } catch (error) {
       console.error("Error detecting cataract:", error);
       setOutputCondition("Error");
-      setOutputAccuracy("Error detecting cataract. Please try again.");
+      setOutputStyle({ color: "black" });
+      setErrorMessage("Error detecting cataract. Please try again.");
     }
   };
 
@@ -108,7 +119,7 @@ const CataractDetection = () => {
             Detect Cataract
           </button>
         </div>
-        
+
         {/* Display uploaded image */}
         {uploadedImageUrl && (
           <div className="mb-8">
@@ -120,10 +131,17 @@ const CataractDetection = () => {
         <div style={{ backgroundColor: "#fff", width: "100%", maxWidth: "600px", height: "200px" }} className="p-8 mb-8 rounded-md shadow-md">
           <h2 className="text-2xl font-semibold mb-4">Results</h2>
           <p>
-            <strong>Condition:</strong> <span style={{ color: "black" }}>{outputCondition}</span> <br />
-            
+            <strong>Condition:</strong> <span style={outputStyle}>{outputCondition}</span>
           </p>
         </div>
+
+        {/* Error Message Section */}
+        {errorMessage && (
+          <div style={{ backgroundColor: "#fff", width: "100%", maxWidth: "600px", height: "200px" }} className="p-8 mb-8 rounded-md shadow-md">
+            <h2 className="text-2xl font-semibold mb-4" style={{ color: "red" }}>Error</h2>
+            <p>{errorMessage}</p>
+          </div>
+        )}
 
         {/* Generated Text Section */}
         <div style={{ backgroundColor: "#fff", width: "100%", maxWidth: "600px", maxHeight: "200px", overflowY: "auto" }} className="p-8 mb-8 rounded-md shadow-md">
