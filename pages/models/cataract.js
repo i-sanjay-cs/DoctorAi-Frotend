@@ -14,7 +14,6 @@ const CataractDetection = () => {
   const [outputStyle, setOutputStyle] = useState({});
   const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
   const [generatedText, setGeneratedText] = useState("Wait for generating the response");
-  const [errorMessage, setErrorMessage] = useState("");
 
   // Function to handle file change
   const handleFileChange = (event) => {
@@ -29,7 +28,6 @@ const CataractDetection = () => {
   // Function to handle file upload and text generation
   const handleUpload = async () => {
     if (!selectedFile) {
-      setErrorMessage("Please choose a file.");
       return;
     }
 
@@ -37,7 +35,7 @@ const CataractDetection = () => {
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch("https://32d2-34-122-19-16.ngrok-free.app/predict-cataract", {
+      const response = await fetch("https://8dcd-34-122-19-16.ngrok-free.app/predict-cataract", {
         method: "POST",
         body: formData,
       });
@@ -49,16 +47,16 @@ const CataractDetection = () => {
       const result = await response.json();
 
       if (result.error) {
-        setErrorMessage(result.error); // Handle error response
+        setOutputCondition(result.error); // Set error message in the condition
+        setOutputStyle({ color: "red" }); // Set color to red for error message
         return;
       }
 
-      setErrorMessage(""); // Clear any previous error message
       setOutputCondition(result.predicted_class);
 
       // Apply styles based on the result
       setOutputStyle({
-        color: result.predicted_class === "Cataract Detected" ? "Red" : "Green",
+        color: result.predicted_class === "Cataract Detected" ? "red" : "green",
       });
 
       // Generate text using CoHere based on the result
@@ -79,8 +77,7 @@ const CataractDetection = () => {
     } catch (error) {
       console.error("Error detecting cataract:", error);
       setOutputCondition("Error");
-      setOutputStyle({ color: "black" });
-      setErrorMessage("Error detecting cataract. Please try again.");
+      setOutputStyle({ color: "red" }); // Set color to red for error message
     }
   };
 
@@ -134,14 +131,6 @@ const CataractDetection = () => {
             <strong>Condition:</strong> <span style={outputStyle}>{outputCondition}</span>
           </p>
         </div>
-
-        {/* Error Message Section */}
-        {errorMessage && (
-          <div style={{ backgroundColor: "#fff", width: "100%", maxWidth: "600px", height: "200px" }} className="p-8 mb-8 rounded-md shadow-md">
-            <h2 className="text-2xl font-semibold mb-4" style={{ color: "red" }}>Error</h2>
-            <p>{errorMessage}</p>
-          </div>
-        )}
 
         {/* Generated Text Section */}
         <div style={{ backgroundColor: "#fff", width: "100%", maxWidth: "600px", maxHeight: "200px", overflowY: "auto" }} className="p-8 mb-8 rounded-md shadow-md">
