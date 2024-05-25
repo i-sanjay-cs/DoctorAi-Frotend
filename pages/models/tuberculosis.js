@@ -34,7 +34,7 @@ const Tuberculosis = () => {
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch("https://8dcd-34-122-19-16.ngrok-free.app/predict-tuberculosis", {
+      const response = await fetch("https://6a2a-34-122-19-16.ngrok-free.app/predict-tuberculosis", {
         method: "POST",
         body: formData,
       });
