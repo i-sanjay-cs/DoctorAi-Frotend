@@ -13,7 +13,7 @@ const BrainTumorDataPage = () => {
           <div className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">About</h2>
             <p><strong>Model Purpose:</strong> Detection of brain tumors automatically from MRI brain scans using the VGG 16 architecture and Convolutional Neural Networks (CNN).</p>
-            <p><strong>Data Source:</strong> Brain MRI pictures categorized into two folders, "yes" and "no", each containing 253 images. The "yes" folder contains 155 tumorous MRI images, while the "no" folder contains 98 non-tumorous MRI images.</p>
+            <p><strong>Data Source:</strong> Brain MRI pictures categorized into two folders, "yes" and "no", each containing 1050 images. The "yes" folder contains 1050 tumorous MRI images, while the "no" folder contains 1050 non-tumorous MRI images.</p>
             <p><strong>Model Architecture:</strong> The algorithm utilizes the VGG 16 architecture and CNN for brain tumor detection. Convolutional feature maps are created using VGG 16, and brain tumors are identified and categorized using the Faster CNN method.</p>
           </div>
           <div className="mb-8">
@@ -28,11 +28,11 @@ const BrainTumorDataPage = () => {
               <tbody>
                 <tr>
                   <td>Tumorous (yes)</td>
-                  <td>155</td>
+                  <td>1050</td>
                 </tr>
                 <tr>
                   <td>Non-Tumorous (no)</td>
-                  <td>98</td>
+                  <td>1050</td>
                 </tr>
               </tbody>
             </table>

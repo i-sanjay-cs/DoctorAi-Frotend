@@ -15,16 +15,12 @@ const CataractDetectionPage = () => {
             <p><strong>Model Purpose:</strong> Classification of cataract disease using convolutional neural networks (CNNs).</p>
             <p><strong>Data Source:</strong> Cataract Eye Dataset providing direct eye images for image classification.</p>
             <p><strong>Model Architecture:</strong> DenseNet121 CNN architecture emerged as the forefront model for cataract disease detection.</p>
+            <p><strong>Training Dataset Size:</strong> The model is trained using 443 images.</p>
           </div>
           <div className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">Model Performance</h2>
             <ul>
-              <li>Training Loss: 1.09%</li>
-              <li>Training Accuracy: 99.54%</li>
-              <li>Validation Loss: 6.22%</li>
-              <li>Validation Accuracy: 98.17%</li>
-              <li>Sensitivity: 96.55%</li>
-              <li>Specificity: 100%</li>
+              <li>Training Accuracy: 95.54%</li>
             </ul>
           </div>
           <div>

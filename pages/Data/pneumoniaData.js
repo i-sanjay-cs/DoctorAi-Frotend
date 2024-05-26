@@ -15,39 +15,8 @@ const PneumoniaDataPage = () => {
             <p><strong>Model Purpose:</strong> Accurate diagnosis of pneumonia using chest X-ray images and the VGG16 architecture.</p>
             <p><strong>Data Source:</strong> Labeled dataset of 5856 frontal chest X-ray images, classified as pneumonia or normal.</p>
             <p><strong>Model Architecture:</strong> VGG16 Convolutional Neural Network (CNN) model with thirteen convolutional layers and three fully connected layers.</p>
-          </div>
-          <div className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Dataset Overview</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Category</th>
-                  <th>Train</th>
-                  <th>Validation</th>
-                  <th>Test</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Pneumonia</td>
-                  <td>2557</td>
-                  <td>854</td>
-                  <td>856</td>
-                </tr>
-                <tr>
-                  <td>Normal</td>
-                  <td>956</td>
-                  <td>316</td>
-                  <td>318</td>
-                </tr>
-                <tr>
-                  <td>Total</td>
-                  <td>3513</td>
-                  <td>1170</td>
-                  <td>1174</td>
-                </tr>
-              </tbody>
-            </table>
+            <p><strong>Dataset Size:</strong> There are 5213 images used in the dataset.</p>
+            <p><strong>Training Accuracy:</strong> The model achieved a training accuracy of 84%.</p>
           </div>
           <div>
             <h2 className="text-2xl font-semibold mb-4">Model Implementation</h2>
