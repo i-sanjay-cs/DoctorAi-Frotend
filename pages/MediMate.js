@@ -15,7 +15,7 @@ const MediMate = () => {
     }
 
     // Initialize GoogleGenerativeAI model
-    const apiKey = 'AIzaSyCCMu8d6y4K_B-YLNTJbfAY2ktG7SEEB5c'; // Replace with your actual API key
+    const apiKey = 'Gemini api - key'; // Replace with your actual API key
     modelRef.current = new GoogleGenerativeAI(apiKey).getGenerativeModel({ model: "gemini-pro" });
   }, []);
 

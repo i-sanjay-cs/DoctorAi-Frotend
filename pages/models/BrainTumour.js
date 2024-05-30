@@ -4,7 +4,7 @@ import Footer from '../../components/Layout/Footer';
 const { CohereClient } = require('cohere-ai');
 
 const cohere = new CohereClient({
-  token: '4bvLxFQCnCd8dyzwsxRnhu4QUnnsq1EMn5F6dauI', // Replace <<apiKey>> with your actual CoHere API key
+  token: 'Cohere - api', // Replace <<apiKey>> with your actual CoHere API key
 });
 
 const BrainTumour = () => {
